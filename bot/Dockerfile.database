@@ -1,0 +1,14 @@
+# Use an official PostgreSQL runtime as a parent image
+FROM postgres:latest
+
+# Set environment variables
+ENV POSTGRES_USER=${POSTGRES_USER}
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+ENV POSTGRES_DB=${POSTGRES_DB}
+
+# Copy database initialization script and values file
+COPY database.py /docker-entrypoint-initdb.d/
+COPY values.py /docker-entrypoint-initdb.d/
+
+# Expose PostgreSQL port
+EXPOSE 5432

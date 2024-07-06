@@ -1,0 +1,17 @@
+# Use the official Python image as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy all the files from the current directory to the working directory in the container
+COPY . .
+
+# Run the pars.py script
+CMD ["python", "pars.py"]
