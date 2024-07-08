@@ -2,18 +2,18 @@ version: '3'
 services:
   database:
     build:
-      context: .  # Use the current directory as the build context
+      context: . 
       dockerfile: Dockerfile.database
     ports:
-      - "5432:5432"  # Map container port 5432 to host port 5432 (PostgreSQL)
+      - "5432:5432"  
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}  # Replace with your desired PostgreSQL username
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}  # Replace with your desired PostgreSQL password
-      POSTGRES_DB: ${POSTGRES_DB}  # Replace with your desired PostgreSQL database name
+      POSTGRES_USER: ${POSTGRES_USER}  
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} 
+      POSTGRES_DB: ${POSTGRES_DB} 
 
   tg_bot:
     build:
-      context: .  # Use the current directory as the build context
-      dockerfile: Dockerfile.tgbot
+      context: .
+      dockerfile: Dockerfile.tg_bot
     depends_on:
-      - database  # Ensure 'database' container is running before starting 'tg_bot'
+      - database 
